@@ -22,6 +22,9 @@ router.get('/test-you', function(req, res){
     console.log("I am here")
     res.send("very important text")
 })
+router.get('/movies/', function (req, res) {
+    res.send(["Harry Potter", "Narnia", "Mission Impossible", "Avengers"])
+})
 
 
 module.exports = router;
