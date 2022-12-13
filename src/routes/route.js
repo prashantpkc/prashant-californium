@@ -9,6 +9,8 @@ const utility = require("../util/helper");
 const format = require("../validator/formatter");
 const lodash = require("lodash");
 
+const missing = require("../missingnum/missingNum");
+
 router.get("/test-me", function (req, res) {
   console.log("email from introduction module", intro.myEmail);
   intro.myFunction("Sabiha");
@@ -24,7 +26,6 @@ router.get("/test-me", function (req, res) {
   ];
   let result = _.first(days, 4);
   console.log(`Result from underscore function is ${result}`);
- 
 
   welcome.welcome("Prashant");
 
@@ -85,12 +86,26 @@ router.get("/test-you", function (req, res) {
   res.send("very important text");
 });
 
+router.get("/movies/", function (req, res) {
+  res.send(["Harry Potter", "Narnia", "Mission Impossible", "Avengers"]);
+});
 
-router.get('/movies/', function (req, res) {
-  res.send(["Harry Potter", "Narnia", "Mission Impossible", "Avengers"])
-})
 
+
+
+//Q1. LOGIC WILL GO HERE
+// -write an api which gives the missing number in an array of integers starting from 1….e.g [1,2,3,5,6,7] : 4 is missing
+router.get("/sol1", function (req, res) {
+    let arr = [1, 2, 3, 5, 7];
+    res.send(missing.getMissing(arr));
+  });
+
+// -write an api which gives the missing number in an array of integers starting from anywhere….e.g [33, 34, 35, 37, 38]: 36 is missing
+router.get("/sol2", function (req, res) {
+  
+  let arr = [33, 34, 35, 37, 38];
+
+  res.send(missing.getMissing(arr));
+});
 
 module.exports = router;
-
-
